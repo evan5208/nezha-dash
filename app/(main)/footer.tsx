@@ -6,7 +6,7 @@ export default function Footer() {
   const [runtime, setRuntime] = useState("");
 
   useEffect(() => {
-    const startTime = new Date("2020-01-01T00:00:00").getTime(); // 替换为你的网站上线时间
+    const startTime = new Date("2022-01-01T00:00:00").getTime(); // 替换为你的网站上线时间
     const updateRuntime = () => {
       const now = new Date().getTime();
       const diffTime = Math.abs(now - startTime);
