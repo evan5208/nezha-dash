@@ -10,12 +10,17 @@ export default function Footer() {
     const updateRuntime = () => {
       const now = new Date().getTime();
       const diffTime = Math.abs(now - startTime);
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      setRuntime(`本站已成功运行 ${diffDays} 天`);
+
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      const diffHours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const diffMinutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+      const diffSeconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+
+      setRuntime(`本站已成功运行 ${diffDays} 天 ${diffHours} 时 ${diffMinutes} 分 ${diffSeconds} 秒`);
     };
 
     updateRuntime(); // 初始更新
-    const interval = setInterval(updateRuntime, 1000 * 60 * 60 * 24); // 每天更新一次
+    const interval = setInterval(updateRuntime, 1000); // 每秒更新一次
 
     return () => clearInterval(interval); // 清除定时器
   }, []);
