@@ -6,6 +6,17 @@ import { Separator } from "@/components/ui/separator";
 import { DateTime } from "luxon";
 
 function Header() {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = "https://fastly.jsdelivr.net/gh/mocchen/cssmeihua/js/yinghua.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <div className="mx-auto w-full max-w-5xl">
       <section className="flex items-center justify-between">
@@ -33,8 +44,6 @@ function Header() {
       </section>
       <Overview />
     </div>
-  <script src="https://fastly.jsdelivr.net/gh/mocchen/cssmeihua/js/yinghua.js"></script>
-  </>
   );
 }
 
@@ -57,7 +66,7 @@ const useInterval = (callback: Function, delay?: number | null) => {
 };
 
 function Overview() {
-  const [mouted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -76,7 +85,7 @@ function Overview() {
       <p className="text-md font-semibold">👋 Overview</p>
       <div className="flex items-center gap-1.5">
         <p className="text-sm font-medium opacity-50">where the time is</p>
-        {mouted && (
+        {mounted && (
           <p className="opacity-1 text-sm font-medium">{timeString}</p>
         )}
       </div>
