@@ -6,9 +6,9 @@ export default function Footer() {
   const [runtime, setRuntime] = useState("");
 
   useEffect(() => {
-    const startTime = new Date("2020-01-01T00:00:00"); // 替换为你的网站上线时间
+    const startTime = new Date("2020-01-01T00:00:00").getTime(); // 替换为你的网站上线时间
     const updateRuntime = () => {
-      const now = new Date();
+      const now = new Date().getTime();
       const diffTime = Math.abs(now - startTime);
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       setRuntime(`本站已成功运行 ${diffDays} 天`);
